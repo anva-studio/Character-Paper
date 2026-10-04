@@ -1,0 +1,16 @@
+Character Paper Proprietary License
+
+Copyright (c) 2026 ANVA. All rights reserved.
+
+Character Paper and its source code are proprietary software owned by ANVA.
+
+The source code is made publicly available for transparency, inspection, learning, and reference purposes only. No license is granted to copy, modify, adapt, merge, publish, distribute, sublicense, sell, repackage, or create derivative works from the software or its source code, in whole or in part, without prior written permission from ANVA.
+
+You may download and use official compiled releases of Character Paper for personal use subject to any terms accompanying those releases.
+
+The Character Paper name, ANVA name, logos, artwork, bundled example content, and other brand assets may not be used to imply affiliation with, endorsement by, or authorship by ANVA without permission.
+
+THE SOFTWARE AND SOURCE CODE ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. TO THE MAXIMUM EXTENT PERMITTED BY LAW, ANVA SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE SOFTWARE OR ITS USE.
+
+For permission requests, contact:
+Anvahq@gmail.com
