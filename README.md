@@ -31,12 +31,19 @@ As with any locally stored data, keeping backups of important work is recommende
 
 ## Repository Structure
 
-This repository contains the source code for both supported versions of Character Paper:
+The main Character Paper desktop project contains the Android source in its own subdirectory:
 
 ```text
 Character-Paper/
-├── Character-Paper-Desktop/
-└── Character-Paper-Android/
+├── app/
+├── build/
+├── scripts/
+├── character-paper-android/
+├── main.cjs
+├── package.json
+├── package-lock.json
+├── README.md
+└── .gitignore
 ```
 
 ### Desktop
@@ -49,10 +56,9 @@ Requirements:
 - npm
 - Windows x64 for the current packaged release
 
-Install dependencies:
+Install dependencies from the repository root:
 
 ```bash
-cd Character-Paper-Desktop
 npm install
 ```
 
@@ -72,13 +78,13 @@ The Windows build uses Electron Builder and produces an NSIS installer.
 
 ### Android
 
-The Android application source is available in:
+The Android application source is located in:
 
 ```text
-Character-Paper-Android/
+character-paper-android/
 ```
 
-Android-specific source, resources, tests, packaging utilities, and the application manifest are maintained in this project directory.
+Android-specific source, resources, tests, packaging utilities, and the application manifest are maintained in this directory.
 
 ## Releases
 
