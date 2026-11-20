@@ -17,7 +17,7 @@ app.whenReady().then(async()=>{
  session.defaultSession.setPermissionCheckHandler((wc,permission)=>wc===win?.webContents&&permission==='clipboard-sanitized-write');
  win=new BrowserWindow({width:1320,height:900,minWidth:780,minHeight:600,title:'Character Paper',icon:path.join(__dirname,'build','icon.png'),backgroundColor:'#f7f3eb',show:false,autoHideMenuBar:true,webPreferences:{nodeIntegration:false,contextIsolation:true,sandbox:true,webSecurity:true,devTools:!app.isPackaged}});
  win.setMenu(null);
- const allowedLinks=new Set(['https://anva-studio.github.io/','https://forms.gle/W7qtQRmqxgZkLtS9','mailto:Anvahq@gmail.com','https://buymeacoffee.com/anva']);
+ const allowedLinks=new Set(['https://anvastudio.in/','https://forms.gle/W7qtQRmqxgZkLtS9','mailto:Anvahq@gmail.com','https://buymeacoffee.com/anva']);
  win.webContents.setWindowOpenHandler(({url})=>{if(allowedLinks.has(url))shell.openExternal(url);return{action:'deny'}});
  win.webContents.on('will-navigate',(event,url)=>{if(url!==origin+'/'){event.preventDefault();if(allowedLinks.has(url))shell.openExternal(url)}});
  win.webContents.on('will-attach-webview',event=>event.preventDefault());

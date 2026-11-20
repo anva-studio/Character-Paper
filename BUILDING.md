@@ -1,6 +1,6 @@
 # Character Paper — Windows desktop build
 
-Version 1.0.2. Made by ANVA. The v0.9 review archive remains a separate development fallback.
+Version 1.1.1 release candidate. Made by ANVA. The v0.9 review archive remains a separate development fallback.
 
 ## Build
 
@@ -21,7 +21,7 @@ The file allowlist includes only the renderer code, core/vault/server modules, s
 
 ## Checks
 
-The 23 core/vault/export/recovery/optional-protection/formatting/migration/example/Android-compatibility tests pass against the desktop copies. The bundled executable was launched with an isolated test-data folder and its welcome screen verified. The app archive was inspected to confirm it includes no profiles, backups or test files. This is not an independent security audit.
+The final 83 core, vault, feature, safeguard, recovery and upgrade tests pass. The bundled executable was launched with an isolated test-data folder and its welcome screen verified. The app archive was inspected to confirm it includes no profiles, backups or test files. This is not an independent security audit.
 
 For an isolated startup check, set PAPER_DESKTOP_TEST_DIR to a dedicated scratch folder and PAPER_DESKTOP_SMOKE=1 before launching the executable. It writes a startup report and exits. Never point test storage at real profiles.
 
@@ -36,3 +36,7 @@ The UI separates About Us and FAQ & Tips, consolidates backups in Settings, move
 ## Version 1.0.2
 
 Game context, editable original Example Profile with reset/delete/restore, searchable Help, finalized ANVA contact links and shared Android support. See the root release notes for migration, verification and signing status. Android build instructions are in the sibling character-paper-android/BUILDING.md. No profiles or signing keys belong in source or package archives.
+
+## Version 1.1.1
+
+Character Pages, shared feature modules, safe portable characters and the extended exploration workflows are documented in the repository root README and feature/test reports. Run the additional work/features-tests.cjs suite. Preserve the build-resource artwork directory. Production signing remains an owner step.

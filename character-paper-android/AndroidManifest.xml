@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="studio.anva.characterpaper" android:versionCode="102" android:versionName="1.0.2">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="studio.anva.characterpaper" android:versionCode="111" android:versionName="1.1.1">
   <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="36" />
   <application android:label="Character Paper" android:icon="@drawable/icon" android:theme="@style/AppTheme" android:allowBackup="false" android:usesCleartextTraffic="false" android:debuggable="false" android:extractNativeLibs="false">
     <activity android:name=".MainActivity" android:exported="true" android:configChanges="orientation|screenSize|keyboardHidden|uiMode" android:windowSoftInputMode="adjustResize">

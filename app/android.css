@@ -1,0 +1,60 @@
+/* The Android top bar is shared across welcome, profiles, home, books and Help. */
+/* Explicit edges also support Android 11's original WebView without CSS inset. */
+#android-header{top:0;left:0;right:0}
+#android-navigation{bottom:0;left:0;right:0}
+body{padding-top:64px;padding-bottom:84px;-webkit-tap-highlight-color:transparent;font-family:system-ui,sans-serif}
+#android-header{position:fixed;inset:0 0 auto;z-index:40;height:64px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--paper);border-bottom:1px solid var(--line)}
+#android-header .android-brand{display:flex;align-items:center;gap:8px;font:20px Georgia,serif;padding:4px;min-height:44px;white-space:nowrap}
+.android-header-actions{display:flex;align-items:center;gap:8px}
+#android-header .profile-control{padding:4px;min-width:44px;min-height:44px}
+#android-header .profile-control strong{display:none}
+#android-header .profile-dp{width:32px;height:32px}
+#android-header .profile-dp.initial{background:var(--tint);border:1px solid var(--line);border-radius:50%}
+#android-header .theme-toggle{width:44px;height:44px;flex-shrink:0}
+#app .public-header,#app .topbar{min-height:0;padding:8px 12px;justify-content:flex-end;max-width:none}
+#app .public-header>div{margin-left:0;justify-content:flex-end;flex-wrap:wrap}
+#app .top-actions{width:100%;justify-content:flex-end}
+#app .home-sidebar{padding:10px 16px}
+#app .home-sidebar nav{margin-top:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;overflow:visible}
+#app .home-sidebar nav button{min-width:0;padding:8px;font-size:13px;text-align:center;white-space:normal}
+#app .home-sidebar,#app .public-header,#app .topbar{display:none}
+#app .home-layout{display:block}
+#app .sidebar-profile{margin-top:0;padding:0;align-items:end}
+#app .home-layout{min-height:calc(100dvh - 64px)}
+#app .home-main .heading{gap:12px}
+#app .section-heading{gap:12px}
+#app .section-heading h2{font-size:24px;line-height:1.25}
+#app .section-heading button{font-size:13px;flex-shrink:0}
+#app .home-actions{justify-content:flex-start}
+button,input,select,textarea{touch-action:manipulation}
+button,.format-tools button{min-height:44px}
+.format-tools button{min-width:44px}
+input[type=checkbox]{min-width:22px;min-height:22px}
+textarea{scroll-margin-top:80px}
+dialog{scroll-padding-top:12px;overscroll-behavior:contain}
+dialog .about-heading{position:sticky;top:-20px;z-index:2;background:var(--paper);padding:8px 0;border-bottom:1px solid var(--line)}
+dialog .about-heading h2{margin:6px 0;overflow-wrap:anywhere}
+dialog .dialog-actions{position:sticky;bottom:-20px;background:var(--paper);padding:12px 0}
+.context-bar{flex-wrap:wrap}
+.editor-header{flex-wrap:wrap}
+.editor-header h1{overflow-wrap:anywhere}
+.dialog-actions button{min-height:44px}
+#android-navigation{position:fixed;inset:auto 0 0;z-index:40;height:76px;padding:6px 10px calc(6px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;background:var(--paper);border-top:1px solid var(--line);margin:0}
+#android-navigation button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:4px;border:0;border-radius:12px;background:transparent;color:var(--muted);font-size:12px}
+#android-navigation button>span:first-child{font-size:24px;line-height:28px;font-family:system-ui,sans-serif}
+#android-navigation button[aria-current]{background:var(--tint);color:var(--text);font-weight:600}
+.mobile-typing #android-navigation,.mobile-focus #android-navigation{display:none}
+.mobile-more-actions{display:grid;gap:12px}
+.mobile-more-actions button{text-align:left;padding:14px 16px}
+.mobile-book-navigation{display:flex;align-items:center;gap:10px}
+.mobile-book-navigation>button{white-space:nowrap;padding:8px}
+.mobile-book-navigation>label{flex:1;min-width:0;font-size:12px;color:var(--muted)}
+.mobile-book-navigation select{width:100%;margin-top:4px;min-height:44px}
+.password-visibility{margin-top:8px;font-size:13px;min-width:64px}
+#save-status{bottom:88px;max-width:calc(100vw - 24px)}
+.mobile-typing #save-status,.mobile-focus #save-status{bottom:12px}
+#mobile-toast{position:fixed;bottom:146px;left:50%;transform:translateX(-50%);z-index:60;padding:12px 22px;border-radius:24px;background:var(--text);color:var(--paper);box-shadow:var(--shadow);font-size:14px;pointer-events:none}
+button{transition:background-color .15s,color .15s}
+button:active{filter:brightness(.95)}
+@media(prefers-reduced-motion:reduce){button{transition:none}}
+@media(max-width:360px){#android-header{padding-left:8px;padding-right:8px}.android-header-actions{gap:4px}#android-header .android-brand{font-size:18px;gap:5px}.recent-books{grid-template-columns:1fr}.section-heading{gap:8px;flex-wrap:wrap}}

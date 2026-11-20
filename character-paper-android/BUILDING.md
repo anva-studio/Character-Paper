@@ -1,6 +1,6 @@
-# Character Paper Android 1.0.2
+# Character Paper Android 1.1.1
 
-This is a native Android Activity hosting the shared local Character Paper UI/core. It does not use a network server or require internet permission. Application ID is `studio.anva.characterpaper`, version code 102, minimum API 26, target API 36. Existing desktop sources are reused from the sibling `character-paper-desktop` directory.
+This is a native Android Activity hosting the shared local Character Paper UI/core. It does not use a network server or require internet permission. Application ID is `studio.anva.characterpaper`, version code 111, minimum API 26, target API 36. Existing desktop sources are reused from the sibling `character-paper-desktop` directory.
 
 ## Prerequisites
 
@@ -28,7 +28,7 @@ bundletool-all-1.18.3.jar
 
 The script copies shared assets, targets Chrome 80-compatible JavaScript syntax, compiles resources/Java/dex, normalizes Windows ZIP path separators, aligns/signs a local-test APK, and builds/validates an unsigned AAB if bundletool is available. APK and AAB are emitted under `outputs/Character-Paper-Android`. No dependencies, SDK files, personal profiles or test provider are packaged in the production app.
 
-The APK uses a standard generated debug key for direct testing. The key stays outside the source archive in the supplied tooling directory. This is not a production signing configuration. Supply a stable ANVA release key when preparing store distribution; do not invent a release identity. The AAB remains unsigned. Windows packaging is independent.
+The local-test APK uses the existing local debug key for direct testing. The build refuses to generate a replacement key if it is missing; the unsigned APK remains the release signing input. The key stays outside the source archive in the supplied tooling directory. This is not a production signing configuration. Supply a stable ANVA release key when preparing store distribution; do not invent a release identity. The AAB remains unsigned. Windows packaging is independent.
 
 ## Tests
 

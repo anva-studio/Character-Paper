@@ -5,7 +5,7 @@ $tools=Join-Path $SdkTools 'build-tools/android-16';$android=Join-Path $SdkTools
 $stage=Join-Path $PSScriptRoot 'build';New-Item -ItemType Directory -Force -Path $stage,$Output,(Join-Path $stage 'classes'),(Join-Path $stage 'dex'),(Join-Path $stage 'assets/www'),(Join-Path $PSScriptRoot 'res/drawable') | Out-Null
 $app=Join-Path $PSScriptRoot '../character-paper-desktop/app'
 Get-ChildItem $app -File | Where-Object {$_.Extension -in '.js','.css','.html','.svg','.png','.txt'} | ForEach-Object {Copy-Item -LiteralPath $_.FullName -Destination (Join-Path $stage 'assets/www')}
-$index=Join-Path $stage 'assets/www/index.html';$html=[IO.File]::ReadAllText($index).Replace('<script src="app.js">','<script src="scrypt.js"></script><script src="local-api.js"></script><script src="android-adapter.js"></script><script src="app.js">').Replace('</body>','<script src="android-ui.js"></script></body>');[IO.File]::WriteAllText($index,$html)
+$index=Join-Path $stage 'assets/www/index.html';$html=[IO.File]::ReadAllText($index).Replace('<script src="app.js">','<script src="scrypt.js"></script><script src="local-api.js"></script><script src="android-adapter.js"></script><script src="app.js">').Replace('</head>','<link rel="stylesheet" href="android.css"></head>').Replace('</body>','<script src="android-ui.js"></script></body>');[IO.File]::WriteAllText($index,$html)
 node (Join-Path $PSScriptRoot 'prepare.cjs');if($LASTEXITCODE){throw 'Android JavaScript compilation failed'}
 Copy-Item (Join-Path $PSScriptRoot '../character-paper-desktop/build/icon.png') (Join-Path $PSScriptRoot 'res/drawable/icon.png')
 & (Join-Path $tools 'aapt2.exe') compile --dir (Join-Path $PSScriptRoot 'res') -o (Join-Path $stage 'res.zip');if($LASTEXITCODE){throw 'Resource compilation failed'}
@@ -17,9 +17,10 @@ $sources=Get-ChildItem (Join-Path $PSScriptRoot 'src') -Recurse -Filter '*.java'
 & $java -cp (Join-Path $tools 'lib/d8.jar') com.android.tools.r8.D8 --min-api 26 --lib $android --output (Join-Path $stage 'dex') (Join-Path $stage 'classes.jar');if($LASTEXITCODE){throw 'Dex compilation failed'}
 & $jar uf (Join-Path $stage 'unsigned.apk') -C (Join-Path $stage 'dex') classes.dex
 & (Join-Path $tools 'zipalign.exe') -f -p 4 (Join-Path $stage 'unsigned.apk') (Join-Path $stage 'aligned.apk');if($LASTEXITCODE){throw 'Alignment failed'}
+Copy-Item -LiteralPath (Join-Path $stage 'aligned.apk') -Destination (Join-Path $Output 'Character-Paper-1.1.1-unsigned.apk')
 $debugKey=Join-Path $SdkTools 'local-testing.keystore'
-if(!(Test-Path $debugKey)){& $keytool -genkeypair -keystore $debugKey -storepass android -keypass android -alias androiddebugkey -dname 'CN=Android Debug,O=Android,C=US' -keyalg RSA -keysize 2048 -validity 10000;if($LASTEXITCODE){throw 'Debug signing failed'}}
-$apk=Join-Path $Output 'Character-Paper-1.0.2-local-test.apk'
+if(!(Test-Path $debugKey)){throw 'Existing local testing key is unavailable. Unsigned APK has been produced; do not generate a replacement release key.'}
+$apk=Join-Path $Output 'Character-Paper-1.1.1-local-test.apk'
 & $java -jar (Join-Path $tools 'lib/apksigner.jar') sign --ks $debugKey --ks-pass pass:android --key-pass pass:android --ks-key-alias androiddebugkey --out $apk (Join-Path $stage 'aligned.apk');if($LASTEXITCODE){throw 'APK signing failed'}
 & $java -jar (Join-Path $tools 'lib/apksigner.jar') verify --verbose $apk;if($LASTEXITCODE){throw 'APK verification failed'}
 $bundletool=Join-Path $SdkTools 'bundletool-all-1.18.3.jar'
@@ -31,7 +32,7 @@ if(Test-Path $bundletool){
  Move-Item (Join-Path $module 'AndroidManifest.xml') (Join-Path $module 'manifest/AndroidManifest.xml') -Force
  Copy-Item (Join-Path $stage 'dex/classes.dex') (Join-Path $module 'dex/classes.dex')
  & $jar cMf (Join-Path $stage 'base.zip') -C $module .
- $bundle=Join-Path $Output 'Character-Paper-1.0.2-unsigned.aab';if(Test-Path $bundle){Remove-Item -LiteralPath $bundle}
+ $bundle=Join-Path $Output 'Character-Paper-1.1.1-unsigned.aab';if(Test-Path $bundle){Remove-Item -LiteralPath $bundle}
  $baseZip=Join-Path $stage 'base.zip'
  & $java -jar $bundletool build-bundle "--modules=$baseZip" "--output=$bundle";if($LASTEXITCODE){throw 'Bundle creation failed'}
  & $java -jar $bundletool validate --bundle=$bundle;if($LASTEXITCODE){throw 'Bundle validation failed'}
